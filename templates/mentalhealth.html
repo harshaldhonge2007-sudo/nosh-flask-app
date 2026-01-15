@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mental Health, Lifestyle & 21-Day Program</title>
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f3f8f5;
+        margin: 0;
+        color: #1f2d27;
+        line-height: 1.6;
+    }
+
+    header {
+        background: #1f7a4d;
+        color: white;
+        padding: 30px;
+        text-align: center;
+    }
+
+    section {
+        max-width: 1100px;
+        margin: auto;
+        padding: 25px;
+    }
+
+    h2 {
+        border-left: 6px solid #2fa36b;
+        padding-left: 12px;
+        margin-top: 40px;
+        color: #1f7a4d;
+    }
+
+    .info {
+        background: #e9f6ef;
+        padding: 15px;
+        border-radius: 10px;
+        border-left: 5px solid #2fa36b;
+        margin-bottom: 20px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+    }
+
+    .card {
+        background: white;
+        padding: 20px;
+        border-radius: 14px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .tag {
+        display: inline-block;
+        background: #e3f5ec;
+        color: #1f7a4d;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    ul {
+        padding-left: 18px;
+    }
+
+    /* 21 DAY SECTION */
+    .day-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .day-card {
+        background: white;
+        border-radius: 14px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        transition: transform 0.2s ease;
+    }
+
+    .day-card:hover {
+        transform: translateY(-6px);
+    }
+
+    .day-number {
+        font-size: 32px;
+        font-weight: bold;
+        color: #1f7a4d;
+        margin-bottom: 10px;
+    }
+
+    .day-title {
+        font-size: 16px;
+        margin-bottom: 15px;
+        color: #2f3e37;
+    }
+
+    .day-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: #1f7a4d;
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: bold;
+        transition: background 0.3s;
+    }
+
+    .day-link:hover {
+        background: #145c3a;
+    }
+
+    footer {
+        background: #1f7a4d;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        margin-top: 50px;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <a href="{{ url_for('dashboard') }}" class="home-btn">🏠 Home</a>
+    <h1>Mental Health & Lifestyle Program</h1>
+    <p>Build discipline, clarity, and strength — mentally & physically</p>
+</header>
+
+<section>
+
+<div class="info">
+<ul>
+    <li>Strong mental health improves consistency and discipline.</li>
+    <li>Small daily actions build long-term confidence.</li>
+    <li>This program blends mindset, habits, focus, and recovery.</li>
+</ul>
+</div>
+
+<!-- ================= MINDSET SECTION ================= -->
+<h2>Mindset & Mental Strength</h2>
+
+<div class="grid">
+    <div class="card">
+        <img src="https://imgs.search.brave.com/fOMd6mlwczfYwPILm6GTH03UMuWdgHlj3_atx1WhgEE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdDUu/ZGVwb3NpdHBob3Rv/cy5jb20vMjIyOTU2/MjQvNjU2MDUvaS80/NTAvZGVwb3NpdHBo/b3Rvc182NTYwNTgw/MzAtc3RvY2stcGhv/dG8tbWluZHNldC1o/dW1hbi1oYW5kcy1o/b2xkaW5nLWJsYWNr/LmpwZw" alt="Mindset">
+        <span class="tag">Mindset</span>
+        <ul>
+            <li>Discipline over motivation</li>
+            <li>Progress over perfection</li>
+            <li>Consistency builds identity</li>
+            <li>Focus on controllables</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <img src="https://imgs.search.brave.com/yaugSc5JXL9mSgk1XoCLrsEUrp5xPbv7Td4bmh4UGnM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMjIy/MTk2MDQxNC9waG90/by9mb2N1cy10ZXh0/LXNlbGVjdGVkLXdp/dGgtbWV0YWxsaWMt/bWFnbmlmeWluZy1n/bGFzcy1vbi1zb2Z0/LXllbGxvdy1iYWNr/Z3JvdW5kLndlYnA_/YT0xJmI9MSZzPTYx/Mng2MTImdz0wJms9/MjAmYz1HM2UybE9W/bFBLUmlhZWRmVmZO/encteFR6RVh0cUVZ/ak9wdVBGbzF6VWZr/PQ" alt="Focus">
+        <span class="tag">Focus</span>
+        <ul>
+            <li>Train attention daily</li>
+            <li>Remove distractions</li>
+            <li>Visualize success</li>
+            <li>Be present</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ================= READING ================= -->
+<h2>Reading & Learning</h2>
+
+<div class="card">
+    <img src="https://imgs.search.brave.com/Q_Vczg241Vs0oYKJ2jdrdv3iALmZCbd4T3_wdT-rTsE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMzEv/NzI2LzcyNC9zbWFs/bC9vcmdhbml6ZWQt/cmVhZGluZy1kZWxp/Z2h0LWJvb2tzLW9u/LWEtY2xlYW4tdGFi/bGUtcGhvdG8uanBn" alt="Reading">
+    <span class="tag">Books</span>
+    <ul>
+        <li>Atomic Habits – James Clear</li>
+        <li>Deep Work – Cal Newport</li>
+        <li>Can't Hurt Me – David Goggins</li>
+        <li>Meditations – Marcus Aurelius</li>
+        <li>The Psychology of Money – Morgan Housel</li>
+    </ul>
+</div>
+
+<!-- ================= STRESS & CALM ================= -->
+<h2>Stress Management & Calm</h2>
+
+<div class="grid">
+    <div class="card">
+        <img src="https://imgs.search.brave.com/idEM1Bd0z-_Mo7zCJlipGyf5Dy7Ae45BbbHWq8t5rIs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNDk2/NzY0NjQ0L3Bob3Rv/L2luaGFsZS1leGhh/bGUtYnJlYXRoZS5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/bGlYbzRULUstRU1m/ZmstQVh6RThCb3Jm/X3NUOXJRcDNWZFJH/dkFFcV9oUT0" alt="Breathing">
+        <span class="tag">Breathing</span>
+        <ul>
+            <li>Inhale 4 seconds</li>
+            <li>Hold 4 seconds</li>
+            <li>Exhale 4 seconds</li>
+            <li>Repeat calmly</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <img src="https://imgs.search.brave.com/bmtONCRl3yRJOA7PJL2av8le8expr86DrzR4CeDbUcs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMzEv/NzA4LzA4Ny9zbWFs/bC95b2dhLW1lZGl0/YXRpb24tYWktZ2Vu/ZXJhdGl2ZS1waG90/by5qcGc" alt="Meditation">
+        <span class="tag">Mindfulness</span>
+        <ul>
+            <li>Observe thoughts</li>
+            <li>Return to breath</li>
+            <li>Stay present</li>
+            <li>5–10 min daily</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ================= JOURNALING ================= -->
+<h2>Journaling & Reflection</h2>
+
+<div class="card">
+    <img src="https://imgs.search.brave.com/9t0PCkqyr22-FO-LiWlA5OUN66Lhm08ZSut0qWAx_pw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudW5zcGxhc2gu/Y29tL3Bob3RvLTE1/MjYyODA3NjA3MTQt/ZjllOGIyNmYzMThm/P2ZtPWpwZyZxPTYw/Jnc9MzAwMCZpeGxp/Yj1yYi00LjEuMCZp/eGlkPU0zd3hNakEz/ZkRCOE1IeHpaV0Z5/WTJoOE4zeDhhbTkx/Y201aGJIeGxibnd3/Zkh3d2ZIeDhNQT09" alt="Journal">
+    <span class="tag">Reflection</span>
+    <ul>
+        <li>What went well today?</li>
+        <li>What did I learn?</li>
+        <li>How did training affect my mood?</li>
+        <li>What can improve tomorrow?</li>
+    </ul>
+</div>
+
+<!-- ================= HABITS ================= -->
+<h2>Healthy Habits & Lifestyle</h2>
+
+<div class="grid">
+    <div class="card">
+        <img src="https://imgs.search.brave.com/xTEHQqtqeNoVeW4VxfJBWgts5Sg-GgOmFySYQo31aJk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9oYWJpdHMtd29y/ZC13cml0dGVuLXdv/b2QtYmxvY2staGFi/aXRzLXRleHQtY2Vt/ZW50LXRhYmxlLXlv/dXItZGVzaWduLWNv/bmNlcHRfMTE1Mjc5/Ni01MTAwLmpwZz9z/ZW10PWFpc19pbmNv/bWluZyZ3PTc0MCZx/PTgw" alt="Habits">
+        <span class="tag">Daily Habits</span>
+        <ul>
+            <li>Exercise</li>
+            <li>Drink water</li>
+            <li>Sleep 7–9 hours</li>
+            <li>Read daily</li>
+            <li>Stretch or walk</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <img src="https://imgs.search.brave.com/lIS2tf5WJBdUTTS5e98QdDKAJebWo6G_UynB6USCI4g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9yb3V0/aW5lLXdvcmQtY29u/Y2VwdC1idWlsZGlu/Zy1ibG9ja3MtdGV4/dC1sZXR0ZXJzLTI4/MDQyNTg3MC5qcGc" alt="Routine">
+        <span class="tag">Routine</span>
+        <ul>
+            <li>Morning focus</li>
+            <li>Training session</li>
+            <li>Evening reflection</li>
+            <li>Quality sleep</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ================= 21 DAY PROGRAM ================= -->
+<h2>21-Day Menditation challange</h2>
+
+<div class="day-grid">
+  <style>
+/* GRID CONTAINER */
+.day-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 20px;
+}
+
+/* CARD */
+.day-card {
+  background: #e9f7f0; /* light mint green */
+  border: 2px solid #9be3c2;
+  border-radius: 14px;
+  padding: 18px;
+  text-align: center;
+  color: #1f3d2b;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.day-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 22px rgba(90, 200, 140, 0.35);
+}
+
+/* DAY NUMBER */
+.day-number {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2fa36b;
+  margin-bottom: 6px;
+}
+
+/* TITLE */
+.day-title {
+  font-size: 16px;
+  margin-bottom: 14px;
+  text-transform: capitalize;
+}
+
+/* BUTTON */
+.day-link {
+  display: inline-block;
+  padding: 9px 16px;
+  background: #6fd3a3;
+  color: #0f2e1f;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.day-link:hover {
+  background: #57c694;
+  transform: scale(1.05);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .day-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .day-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+
+<!-- COPY THIS PATTERN FOR ALL DAYS -->
+<!-- Replace VIDEO_ID_X with YouTube embed IDs -->
+
+<div class="day-card"><div class="day-number">Day 1</div><div class="day-title">Meditation for Beginners</div><a class="day-link" href="https://youtu.be/eJPH2rGbD2s" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 2</div><div class="day-title">The art of deep relaxation</div><a class="day-link" href="https://youtu.be/P-kQNZWYOFw" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 3</div><div class="day-title">What the eyes Reveal</div><a class="day-link" href="https://youtu.be/Y2MEyaTDvtQ" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 4</div><div class="day-title">The gift of life </div><a class="day-link" href="https://youtu.be/GfmaQJETuy8" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 5</div><div class="day-title">Beyond the body</div><a class="day-link" href="https://youtu.be/YoUk8I6ST_0" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 6</div><div class="day-title">scenery to seer</div><a class="day-link" href="https://youtu.be/oRDKX53BqXk" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 7</div><div class="day-title">sound to silence</div><a class="day-link" href="https://youtu.be/TLbHzF1p7Co" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 8</div><div class="day-title">the fire within</div><a class="day-link" href="https://youtu.be/TQPieQAf3YE" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 9</div><div class="day-title">Movement to stillness</div><a class="day-link" href="https://youtu.be/dlcAZdizQmE" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 10</div><div class="day-title">Bouncing Awareness</div><a class="day-link" href="https://youtu.be/ppBC5c3Qk0g" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 11</div><div class="day-title">Piller of Energy</div><a class="day-link" href="https://youtu.be/IaQ1HNBvGkI" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 12</div><div class="day-title">A new life</div><a class="day-link" href="https://youtu.be/9wU3yv84Y3k" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 13</div><div class="day-title">Effort to Effortlessness</div><a class="day-link" href="https://youtu.be/udGB6SEsII8" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 14</div><div class="day-title">what about thoughts?</div><a class="day-link" href="https://youtu.be/XIX4vWgIS_A" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 15</div><div class="day-title">Are you Feeling Restless?</div><a class="day-link" href="https://youtu.be/on3DfNbSRqk" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 16</div><div class="day-title">Technique to improve sleep quality</div><a class="day-link" href="https://youtu.be/i5k21RY1aYM" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 17</div><div class="day-title">5 Elements & 5 Senses</div><a class="day-link" href="https://youtu.be/Q9SSI7rxIbk" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 18</div><div class="day-title">Timelessness</div><a class="day-link" href="https://youtu.be/FWV1E4yL5n4" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 19</div><div class="day-title">Only you</div><a class="day-link" href="https://youtu.be/uJr_3fgR8rI" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 20</div><div class="day-title">colours of consciousness</div><a class="day-link" href="https://youtu.be/iwNo3r4u_rM" target="_blank">Watch Session</a></div>
+<div class="day-card"><div class="day-number">Day 21</div><div class="day-title">colours of Consciousness</div><a class="day-link" href="https://youtu.be/o_MLES4seQY" target="_blank">Watch Session</a></div>
+
+</div>
+
+<!-- DISCLAIMER -->
+<h2>Important Note</h2>
+<div class="info">
+<p>
+This website supports wellness, self-discipline, and lifestyle improvement.
+It does not replace professional medical or mental health care.
+If you are struggling deeply, please seek help from a qualified professional.
+</p>
+</div>
+
+</section>
+
+<footer>
+    <p>Mental Health × Fitness × Discipline 💚</p>
+</footer>
+
+</body>
+</html>

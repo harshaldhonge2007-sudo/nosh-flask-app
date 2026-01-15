@@ -1,0 +1,52 @@
+/* Signup Page */
+
+/* Select & Textarea should behave like inputs */
+.field select,
+.field textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 16px;
+    outline: none;
+    resize: none;
+    padding: 6px 0;
+}
+
+/* Textarea height */
+.field textarea {
+    min-height: 50px;
+}
+
+/* Floating label trigger for select & textarea */
+.field select:focus + label,
+.field select:valid + label,
+.field textarea:focus + label,
+.field textarea:valid + label {
+    top: -14px;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+/* Remove default select arrow styling */
+.field select {
+    appearance: none;
+    cursor: pointer;
+}
+
+/* Improve spacing for signup (more fields) */
+.login-card {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Smooth scrollbar (optional polish) */
+.login-card::-webkit-scrollbar {
+    width: 6px;
+}
+
+.login-card::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+}

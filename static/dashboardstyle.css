@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Bell MT';
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Header Styling - Matching your image */
+header {
+    background:linear-gradient(to right, #1e7c4d, #1e7c4d); /* The green from your image */
+    padding: 0px 0;
+    text-align: center;
+    color: white;
+}
+
+
+/* Dashboard Grid */
+.dashboard {
+    display: grid;
+    /* This creates 2 equal columns */
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;
+    padding: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* The Box Styling */
+.dash-box {
+    background-color: #1edc8a; /* Button Green */
+    color: white;
+    text-decoration: none;
+    height: 300px; /* Makes them large rectangular boxes */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: transform 0.2s, background-color 0.2s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* The Key: Make the 3rd box span across both columns */
+.dash-box.mental {
+    grid-column: span 2; 
+}
+
+.box-inner {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.icon {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+/* Hover Effect */
+.dash-box:hover {
+    background-color: #1f8a4d; /* Darker green on hover */
+    transform: translateY(-5px);
+}
+
+
+
+.card-button {
+    /* 1. Background Color (The specific mint green from pic 2) */
+    background-color: #70d4a2; 
+    
+    /* 2. Text Style (Dark and Bold) */
+    color: #0c3e27;             /* Dark green/black text */
+    font-family: sans-serif;    /* Sans-serif matches pic 2 better */
+    font-weight: bold;
+    text-decoration: none;
+    
+    /* 3. Shape and Padding */
+    border-radius: 12px;        /* Smooth rounded corners */
+    padding: 15px 30px;         /* Smaller height than your original cards */
+    border: none;
+    
+    /* 4. Layout */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;                  /* Space between emoji and text */
+    
+    /* 5. Removal of Shadow */
+    box-shadow: none;           /* Pic 2 buttons are flatter */
+    
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+/* Optional Hover Effect */
+.card-button:hover {
+    background-color: #5fb88c;  /* Slightly darker on hover */
+    transform: translateY(-2px);
+}

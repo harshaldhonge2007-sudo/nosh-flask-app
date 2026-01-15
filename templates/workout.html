@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout</title>
+
+    <!-- Flask-safe CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboardstyle.css') }}">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: serif;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background: #258b58;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        h2 {
+            border-left: 6px solid #2fa36b;
+            padding-left: 12px;
+            margin-top: 40px;
+            color: #1f7a4d;
+        }
+
+        h3 {
+            color: #1f7a4d;
+        }
+
+        .info {
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .workout-box {
+            background-color: #e6f4ea;
+            border-left: 5px solid #1e7045;
+            border-radius: 10px;
+            padding: 15px 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .workout-title {
+            font-size: 18px;
+            color: #1e7045;
+            font-weight: bold;
+        }
+
+        .workout-box p {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e7045;
+            margin-top: 10px;
+        }
+
+        .workout-box ul {
+            margin-top: 10px;
+        }
+
+        .workout-box ul li {
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .workout-box a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #4509eb;
+            font-size: 18px;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        .workout-box a:hover {
+            color: #5a4de1;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <a href="{{ url_for('dashboard') }}" class="home-btn">🏠 Home</a>
+    <h1>Workout Splits</h1>
+</header>
+
+<section aria-label="Workout Levels">
+    <div class="info">
+
+        <!-- Beginner -->
+        <h2>Beginner Level</h2>
+        <h3>Best for people with 0–6 months experience, learning form and building base strength</h3>
+
+        <div class="workout-box">
+            <div class="workout-title">FULL BODY WORKOUT</div>
+            <p>Who should do it?</p>
+            <ul>
+                <li>Absolute beginners</li>
+                <li>People new to the gym</li>
+                <li>Those training 2–3 days per week</li>
+                <li>People focusing on learning form</li>
+            </ul>
+            <a href="{{ url_for('fullbody') }}">Click Here</a>
+        </div>
+
+        <div class="workout-box">
+            <div class="workout-title">UPPER / LOWER BODY SPLIT</div>
+            <p>Who should do it?</p>
+            <ul>
+                <li>Beginners moving to next level</li>
+                <li>People training 4 days per week</li>
+                <li>Better recovery than full body</li>
+                <li>Strength + muscle base</li>
+            </ul>
+            <a href="{{ url_for('upperlowerworkout') }}">Click Here</a>
+        </div>
+
+        <!-- Intermediate -->
+        <h2>Intermediate Level</h2>
+        <h3>For trainees with 6–18 months experience and better recovery</h3>
+
+        <div class="workout-box">
+            <div class="workout-title">POWERLIFT SPLIT</div>
+            <p>Who should do it?</p>
+            <ul>
+                <li>Lifters focused on strength</li>
+                <li>Athletes training squat, bench, deadlift</li>
+                <li>Intermediate to advanced trainees</li>
+                <li>Competition preparation</li>
+            </ul>
+            <a href="{{ url_for('powerliftworkout') }}">Click Here</a>
+        </div>
+
+        <div class="workout-box">
+            <div class="workout-title">PUSH PULL LEGS SPLIT</div>
+            <p>Who should do it?</p>
+            <ul>
+                <li>Intermediate gym-goers</li>
+                <li>Training 3–6 days per week</li>
+                <li>Balanced muscle growth</li>
+            </ul>
+            <a href="{{ url_for('pushpull') }}">Click Here</a>
+        </div>
+
+        <div class="workout-box">
+            <div class="workout-title">BRO SPLIT</div>
+            <p>Who should do it?</p>
+            <ul>
+                <li>Intermediate lifters</li>
+                <li>One muscle per day preference</li>
+                <li>Muscle size & aesthetics focus</li>
+                <li>Enough recovery time</li>
+            </ul>
+            <a href="{{ url_for('brosplit') }}">Click Here</a>
+        </div>
+
+        <!-- Advanced -->
+        <h2>Advanced Level</h2>
+        <h3>For lifters with 18+ months training, excellent recovery and nutrition</h3>
+
+        <div class="workout-box">
+            <div class="workout-title">ARNOLD SPLIT</div>
+            <p>Who should do it?</p>
+            <ul>
+                <li>Advanced lifters</li>
+                <li>Bodybuilding focused trainees</li>
+                <li>5–6 training days/week</li>
+                <li>High discipline & recovery</li>
+            </ul>
+            <a href="{{ url_for('arnold') }}">Click Here</a>
+        </div>
+
+        <div class="workout-box">
+            <div class="workout-title">GERMAN VOLUME TRAINING</div>
+            <p>Who should do it?</p>
+            <ul>
+                <li>Very experienced lifters</li>
+                <li>Short-term mass shock</li>
+                <li>Excellent recovery ability</li>
+                <li>Handles very high volume</li>
+            </ul>
+            <a href="{{ url_for('germanworkout') }}">Click Here</a>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>

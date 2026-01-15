@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign Up - NOSH</title>
+
+    <!-- Base styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+
+    <!-- Signup-specific styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='signup.css') }}">
+</head>
+
+<body class="login-screen">
+
+    <div class="login-card">
+        <h1>NOSH</h1>
+        <p class="subtitle">Build Your Fitness Profile</p>
+
+        <form method="POST" action="/signup">
+
+            <div class="field">
+                <input type="text" name="name" required>
+                <label>Full Name</label>
+            </div>
+
+            <div class="field">
+                <input type="email" name="email" required>
+                <label>Email Address</label>
+            </div>
+
+            <div class="field">
+                <input type="password" name="password" required>
+                <label>Password</label>
+            </div>
+
+            <div class="field">
+                <select name="gender" required>
+                    <option value="" disabled selected></option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                </select>
+                <label>Gender</label>
+            </div>
+
+            <div class="field">
+                <input type="number" name="age" min="10" max="100" required>
+                <label>Age</label>
+            </div>
+
+            <div class="field">
+                <input type="number" name="weight" step="0.1" required>
+                <label>Weight (kg)</label>
+            </div>
+
+            <div class="field">
+                <input type="number" name="height" step="0.1" required>
+                <label>Height (cm)</label>
+            </div>
+
+            <div class="field">
+                <select name="injuries" required>
+                    <option value="" disabled selected></option>
+                    <option value="none">None</option>
+                    <option value="knee">Knee Pain</option>
+                    <option value="back">Lower Back Pain</option>
+                    <option value="shoulder">Shoulder Injury</option>
+                    <option value="ankle">Ankle Injury</option>
+                    <option value="wrist">Wrist / Elbow Pain</option>
+                    <option value="other">Other</option>
+                </select>
+                <label>Injuries</label>
+            </div>
+
+            <div class="field">
+                <select name="goal" required>
+                    <option value="" disabled selected></option>
+                    <option value="weight_loss">Weight Loss</option>
+                    <option value="muscle_gain">Muscle Gain</option>
+                    <option value="general_fitness">General Fitness</option>
+                    <option value="strength">Strength</option>
+                </select>
+                <label>Fitness Goal</label>
+            </div>
+
+            <div class="field">
+                <select name="mental_health" required>
+                    <option value="" disabled selected></option>
+                    <option value="none">None</option>
+                    <option value="stress">Stress</option>
+                    <option value="anxiety">Anxiety</option>
+                    <option value="low_mood">Low Mood / Depression</option>
+                    <option value="sleep_issues">Sleep Problems</option>
+                    <option value="burnout">Burnout</option>
+                    <option value="other">Other</option>
+                </select>
+                <label>Mental Health</label>
+            </div>
+
+            <button type="submit">Create Account</button>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

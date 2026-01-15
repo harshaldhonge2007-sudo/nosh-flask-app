@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOSH Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboardstyle.css') }}">
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('dashboard') }}" class="home-btn">🏠 Home</a>
+        <div class="header-content">
+                <img src="{{ url_for('static', filename='images/logo.png') }}"
+     width="700" height="300" alt="Nosh Logo">
+
+    </header>
+
+    <main>
+        <section class="dashboard">
+            <!-- Box 1 -->
+            <a href="{{ url_for('workout') }}" class="card-button">
+                <div class="box-inner">
+                    <span class="icon">💪</span>
+                    <h2>Workout</h2>
+                </div>
+            </a>
+
+            <!-- Box 2 -->
+            <a href="{{ url_for('diet') }}" class="card-button">
+                <div class="box-inner">
+                    <span class="icon">🥗</span>
+                    <h2>Diet Planner</h2>
+                </div>
+            </a>
+
+            <!-- Box 3 (Spans both columns at the bottom) -->
+            <a href="{{ url_for('mentalhealth') }}" class="card-button">
+                <div class="box-inner">
+                    <span class="icon">🧘</span>
+                    <h2>Mental Health</h2>
+                </div>
+            </a>
+            
+            <a href="{{ url_for('custom_diet_plan') }}" class="card-button">
+                <div class="box-inner">
+                    <span class="icon">⚙</span>
+                    <h2>Custom Diet Plan</h2>
+                </div>
+            </a>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,1142 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Diet Planner</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f3f8f5;
+        color: #1f2d27;
+        line-height: 1.6;
+    }
+
+    header {
+        background: #1f7a4d;
+        color: white;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
+
+    header p {
+        font-size: 1.2em;
+        opacity: 0.95;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 30px 20px;
+    }
+
+    .info-banner {
+        background: #e9f6ef;
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 5px solid #2fa36b;
+        margin-bottom: 30px;
+        text-align: center;
+        font-size: 1.1em;
+        color: #1f7a4d;
+    }
+
+    .section-header {
+        font-size: 1.8em;
+        color: #1f7a4d;
+        margin: 40px 0 20px 0;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #2fa36b;
+    }
+
+    .category-section {
+        background: white;
+        padding: 25px;
+        margin-bottom: 25px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .category-title {
+        font-size: 1.4em;
+        color: #1f7a4d;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e9f6ef;
+    }
+
+    .food-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .food-card {
+        background: #fafafa;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .food-card:hover {
+        border-color: #2fa36b;
+        box-shadow: 0 4px 12px rgba(31, 122, 77, 0.15);
+    }
+
+    .food-card.selected {
+        background: #e9f6ef;
+        border-color: #2fa36b;
+    }
+
+    .food-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .food-card-title {
+        font-weight: bold;
+        font-size: 1.05em;
+        color: #1f2d27;
+    }
+
+    .quantity-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .qty-btn {
+        width: 26px;
+        height: 26px;
+        border: 2px solid #2fa36b;
+        background: white;
+        color: #1f7a4d;
+        border-radius: 50%;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+    }
+
+    .qty-btn:hover {
+        background: #2fa36b;
+        color: white;
+    }
+
+    .qty-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+
+    .qty-display {
+        min-width: 22px;
+        text-align: center;
+        font-weight: bold;
+        color: #1f7a4d;
+        font-size: 1em;
+    }
+
+    .food-card-stats {
+        display: flex;
+        gap: 10px;
+        font-size: 0.9em;
+    }
+
+    .stat-pill {
+        background: white;
+        color: #1f7a4d;
+        padding: 4px 10px;
+        border-radius: 15px;
+        font-weight: 600;
+    }
+
+    .food-card.selected .stat-pill {
+        background: #2fa36b;
+        color: white;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin: 40px 0;
+    }
+
+    .btn {
+        padding: 15px 35px;
+        font-size: 1.1em;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .btn-primary {
+        background: #1f7a4d;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background: #145c3a;
+    }
+
+    .btn-secondary {
+        background: white;
+        color: #1f7a4d;
+        border: 2px solid #1f7a4d;
+    }
+
+    .btn-secondary:hover {
+        background: #f3f8f5;
+    }
+
+    .result-section {
+        display: none;
+    }
+
+    .summary-box {
+        background: #1f7a4d;
+        color: white;
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+    }
+
+    .summary-box h2 {
+        margin-bottom: 20px;
+        font-size: 1.8em;
+    }
+
+    .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .summary-item {
+        text-align: center;
+        padding: 15px;
+        background: rgba(255,255,255,0.15);
+        border-radius: 8px;
+    }
+
+    .summary-number {
+        font-size: 2.5em;
+        font-weight: bold;
+        display: block;
+    }
+
+    .summary-label {
+        font-size: 1em;
+        margin-top: 5px;
+    }
+
+    .meal-category {
+        background: white;
+        padding: 25px;
+        margin-bottom: 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .meal-category-title {
+        font-size: 1.3em;
+        color: #1f7a4d;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e9f6ef;
+    }
+
+    .meal-list {
+        list-style: none;
+    }
+
+    .meal-item {
+        padding: 12px;
+        margin-bottom: 8px;
+        background: #f9f9f9;
+        border-radius: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-left: 4px solid #2fa36b;
+    }
+
+    .meal-item-name {
+        font-weight: 600;
+    }
+
+    .meal-item-stats {
+        display: flex;
+        gap: 10px;
+    }
+
+    .meal-badge {
+        background: #1f7a4d;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 15px;
+        font-size: 0.9em;
+        font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+        .food-container {
+            grid-template-columns: 1fr;
+        }
+        
+        header h1 {
+            font-size: 2em;
+        }
+        
+        .button-group {
+            flex-direction: column;
+        }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🍽️ Custom Diet Planner</h1>
+    <p>Build your personalized meal plan by selecting your favorite foods</p>
+    <a href="{{ url_for('dashboard') }}" class="home-btn">Home</a>
+</header>
+
+<div class="container">
+    <!-- SELECTION PAGE -->
+    <div id="selectionPage">
+        <div class="info-banner">
+            <strong>👆 Use + and - buttons to add multiple servings</strong> - Selected items will be highlighted
+        </div>
+
+        <div class="section-header">Select Your Foods</div>
+
+        <!-- Breakfast -->
+        <div class="category-section">
+            <div class="category-title">
+                <span>🌅</span>
+                <span>Breakfast Options</span>
+            </div>
+            <div class="food-container">
+                <div class="food-card" data-name="Oats (100g)" data-calories="389" data-protein="17" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Oats (100g)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">389 cal</span>
+                        <span class="stat-pill">17g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Poha (1 bowl)" data-calories="180" data-protein="4" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Poha (1 bowl)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">180 cal</span>
+                        <span class="stat-pill">4g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Idli (2 pieces)" data-calories="120" data-protein="4" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Idli (2 pieces)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">120 cal</span>
+                        <span class="stat-pill">4g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Paratha (1 piece)" data-calories="230" data-protein="6" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Paratha (1 piece)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">230 cal</span>
+                        <span class="stat-pill">6g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Upma (1 bowl)" data-calories="200" data-protein="5" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Upma (1 bowl)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">200 cal</span>
+                        <span class="stat-pill">5g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Boiled Egg (1)" data-calories="70" data-protein="6" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Boiled Egg (1)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">70 cal</span>
+                        <span class="stat-pill">6g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Dosa (1 piece)" data-calories="120" data-protein="3" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Dosa (1 piece)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">120 cal</span>
+                        <span class="stat-pill">3g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Bread Toast (2 slices)" data-calories="160" data-protein="5" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Bread Toast (2 slices)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">160 cal</span>
+                        <span class="stat-pill">5g protein</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Meals -->
+        <div class="category-section">
+            <div class="category-title">
+                <span>🍛</span>
+                <span>Main Meals (Lunch/Dinner)</span>
+            </div>
+            <div class="food-container">
+                <div class="food-card" data-name="Rice (1 bowl)" data-calories="200" data-protein="4" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Rice (1 bowl)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">200 cal</span>
+                        <span class="stat-pill">4g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Roti (1 piece)" data-calories="70" data-protein="2.5" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Roti (1 piece)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">70 cal</span>
+                        <span class="stat-pill">2.5g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Dal (1 bowl)" data-calories="150" data-protein="9" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Dal (1 bowl)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">150 cal</span>
+                        <span class="stat-pill">9g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Rajma (1 bowl)" data-calories="180" data-protein="10" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Rajma (1 bowl)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">180 cal</span>
+                        <span class="stat-pill">10g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Chicken Curry (150g)" data-calories="250" data-protein="30" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Chicken Curry (150g)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">250 cal</span>
+                        <span class="stat-pill">30g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Paneer Curry (100g)" data-calories="265" data-protein="18" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Paneer Curry (100g)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">265 cal</span>
+                        <span class="stat-pill">18g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Fish Curry (150g)" data-calories="220" data-protein="28" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Fish Curry (150g)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">220 cal</span>
+                        <span class="stat-pill">28g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Mixed Vegetables (1 bowl)" data-calories="100" data-protein="3" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Mixed Vegetables (1 bowl)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">100 cal</span>
+                        <span class="stat-pill">3g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Chole (1 bowl)" data-calories="240" data-protein="12" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Chole (1 bowl)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">240 cal</span>
+                        <span class="stat-pill">12g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Aloo Sabzi (1 bowl)" data-calories="150" data-protein="3" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Aloo Sabzi (1 bowl)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">150 cal</span>
+                        <span class="stat-pill">3g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Kadhi (1 bowl)" data-calories="180" data-protein="8" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Kadhi (1 bowl)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">180 cal</span>
+                        <span class="stat-pill">8g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Mutton Curry (150g)" data-calories="300" data-protein="25" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Mutton Curry (150g)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">300 cal</span>
+                        <span class="stat-pill">25g protein</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Snacks -->
+        <div class="category-section">
+            <div class="category-title">
+                <span>🍿</span>
+                <span>Snacks & Evening Items</span>
+            </div>
+            <div class="food-container">
+                <div class="food-card" data-name="Banana (1 medium)" data-calories="105" data-protein="1" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Banana (1 medium)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">105 cal</span>
+                        <span class="stat-pill">1g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Apple (1 medium)" data-calories="95" data-protein="0.5" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Apple (1 medium)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">95 cal</span>
+                        <span class="stat-pill">0.5g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Almonds (30g)" data-calories="170" data-protein="6" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Almonds (30g)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">170 cal</span>
+                        <span class="stat-pill">6g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Peanuts (30g)" data-calories="165" data-protein="7" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Peanuts (30g)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">165 cal</span>
+                        <span class="stat-pill">7g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Curd (1 bowl)" data-calories="98" data-protein="6" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Curd (1 bowl)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">98 cal</span>
+                        <span class="stat-pill">6g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Samosa (1 piece)" data-calories="262" data-protein="5" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Samosa (1 piece)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">262 cal</span>
+                        <span class="stat-pill">5g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Pakora (5 pieces)" data-calories="180" data-protein="4" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Pakora (5 pieces)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">180 cal</span>
+                        <span class="stat-pill">4g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Orange (1 medium)" data-calories="62" data-protein="1" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Orange (1 medium)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">62 cal</span>
+                        <span class="stat-pill">1g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Mixed Nuts (30g)" data-calories="180" data-protein="5" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Mixed Nuts (30g)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">180 cal</span>
+                        <span class="stat-pill">5g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Bhel Puri (1 plate)" data-calories="220" data-protein="5" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Bhel Puri (1 plate)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">220 cal</span>
+                        <span class="stat-pill">5g protein</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Beverages -->
+        <div class="category-section">
+            <div class="category-title">
+                <span>☕</span>
+                <span>Beverages</span>
+            </div>
+            <div class="food-container">
+                <div class="food-card" data-name="Milk (1 glass)" data-calories="150" data-protein="8" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Milk (1 glass)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">150 cal</span>
+                        <span class="stat-pill">8g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Tea (1 cup)" data-calories="60" data-protein="2" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Tea (1 cup)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">60 cal</span>
+                        <span class="stat-pill">2g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Coffee (1 cup)" data-calories="70" data-protein="2" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Coffee (1 cup)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">70 cal</span>
+                        <span class="stat-pill">2g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Lassi (1 glass)" data-calories="150" data-protein="5" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Lassi (1 glass)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">150 cal</span>
+                        <span class="stat-pill">5g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Protein Shake (1 glass)" data-calories="180" data-protein="25" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Protein Shake (1 glass)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">180 cal</span>
+                        <span class="stat-pill">25g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Buttermilk (1 glass)" data-calories="50" data-protein="3" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Buttermilk (1 glass)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">50 cal</span>
+                        <span class="stat-pill">3g protein</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- High Protein -->
+        <div class="category-section">
+            <div class="category-title">
+                <span>💪</span>
+                <span>High Protein Sources</span>
+            </div>
+            <div class="food-container">
+                <div class="food-card" data-name="Grilled Chicken (150g)" data-calories="165" data-protein="31" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Grilled Chicken (150g)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">165 cal</span>
+                        <span class="stat-pill">31g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Tofu (100g)" data-calories="76" data-protein="8" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Tofu (100g)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">76 cal</span>
+                        <span class="stat-pill">8g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Chickpeas (1 bowl)" data-calories="210" data-protein="11" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Chickpeas (1 bowl)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">210 cal</span>
+                        <span class="stat-pill">11g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Greek Yogurt (1 bowl)" data-calories="130" data-protein="12" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Greek Yogurt (1 bowl)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">130 cal</span>
+                        <span class="stat-pill">12g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Cottage Cheese (100g)" data-calories="98" data-protein="11" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Cottage Cheese (100g)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">98 cal</span>
+                        <span class="stat-pill">11g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Egg White (1)" data-calories="17" data-protein="3.6" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Egg White (1)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">17 cal</span>
+                        <span class="stat-pill">3.6g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Soya Chunks (50g)" data-calories="170" data-protein="26" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Soya Chunks (50g)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">170 cal</span>
+                        <span class="stat-pill">26g protein</span>
+                    </div>
+                </div>
+                <div class="food-card" data-name="Tuna (100g)" data-calories="130" data-protein="28" data-qty="0">
+                    <div class="food-card-header">
+                        <div class="food-card-title">Tuna (100g)</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+                            <span class="qty-display">0</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="food-card-stats">
+                        <span class="stat-pill">130 cal</span>
+                        <span class="stat-pill">28g protein</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="btn btn-secondary" onclick="clearAll()">Clear Selection</button>
+            <button class="btn btn-primary" onclick="createPlan()">Create My Diet Plan →</button>
+        </div>
+    </div>
+
+    <!-- RESULT PAGE -->
+    <div id="resultPage" class="result-section">
+        <div class="summary-box">
+            <h2>Your Daily Nutrition Summary</h2>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="summary-number" id="totalCal">0</span>
+                    <span class="summary-label">Calories</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-number" id="totalPro">0g</span>
+                    <span class="summary-label">Protein</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-number" id="totalFood">0</span>
+                    <span class="summary-label">Food Items</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header">Your Meal Plan</div>
+        <div id="planContent"></div>
+
+        <div class="button-group">
+            <button class="btn btn-secondary" onclick="goBack()">← Back to Selection</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function changeQty(btn, change) {
+    const card = btn.closest('.food-card');
+    const qtyDisplay = card.querySelector('.qty-display');
+    let currentQty = parseInt(card.dataset.qty);
+    
+    currentQty = Math.max(0, currentQty + change);
+    card.dataset.qty = currentQty;
+    qtyDisplay.textContent = currentQty;
+    
+    // Update visual state
+    if (currentQty > 0) {
+        card.classList.add('selected');
+    } else {
+        card.classList.remove('selected');
+    }
+}
+
+function clearAll() {
+    document.querySelectorAll('.food-card').forEach(card => {
+        card.dataset.qty = '0';
+        card.querySelector('.qty-display').textContent = '0';
+        card.classList.remove('selected');
+    });
+}
+
+function createPlan() {
+    const selected = [];
+    let totalCal = 0;
+    let totalPro = 0;
+
+    document.querySelectorAll('.food-card').forEach(card => {
+        const qty = parseInt(card.dataset.qty);
+        if (qty > 0) {
+            const item = {
+                name: card.dataset.name,
+                calories: parseInt(card.dataset.calories),
+                protein: parseFloat(card.dataset.protein),
+                quantity: qty,
+                category: card.closest('.category-section').querySelector('.category-title span:last-child').textContent
+            };
+            selected.push(item);
+            totalCal += item.calories * qty;
+            totalPro += item.protein * qty;
+        }
+    });
+
+    if (selected.length === 0) {
+        alert('Please select at least one food item!');
+        return;
+    }
+
+    document.getElementById('totalCal').textContent = totalCal;
+    document.getElementById('totalPro').textContent = totalPro.toFixed(1) + 'g';
+    document.getElementById('totalFood').textContent = selected.length;
+
+    const grouped = {};
+    selected.forEach(item => {
+        if (!grouped[item.category]) grouped[item.category] = [];
+        grouped[item.category].push(item);
+    });
+
+    let html = '';
+    for (const [cat, items] of Object.entries(grouped)) {
+        html += `
+            <div class="meal-category">
+                <div class="meal-category-title">${cat}</div>
+                <ul class="meal-list">
+        `;
+        items.forEach(item => {
+            const itemName = item.quantity > 1 ? `${item.name} × ${item.quantity}` : item.name;
+            const itemCal = item.calories * item.quantity;
+            const itemPro = (item.protein * item.quantity).toFixed(1);
+            
+            html += `
+                <li class="meal-item">
+                    <span class="meal-item-name">${itemName}</span>
+                    <div class="meal-item-stats">
+                        <span class="meal-badge">${itemCal} cal</span>
+                        <span class="meal-badge">${itemPro}g protein</span>
+                    </div>
+                </li>
+            `;
+        });
+        html += `</ul></div>`;
+    }
+
+    document.getElementById('planContent').innerHTML = html;
+    document.getElementById('selectionPage').style.display = 'none';
+    document.getElementById('resultPage').style.display = 'block';
+    window.scrollTo(0, 0);
+}
+
+function goBack() {
+    document.getElementById('resultPage').style.display = 'none';
+    document.getElementById('selectionPage').style.display = 'block';
+    window.scrollTo(0, 0);
+}
+</script>
+
+</body>
+</html>

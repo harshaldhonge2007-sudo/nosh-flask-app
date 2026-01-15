@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diet and Eating Habits for a Healthy & Fit Lifestyle</title>
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f3f8f5;
+        margin: 0;
+        color: #1f2d27;
+        line-height: 1.6;
+    }
+
+    header {
+        background: #1f7a4d;
+        color: white;
+        padding: 30px;
+        text-align: center;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 2.2em;
+    }
+
+    header p {
+        margin: 10px 0 0 0;
+        font-size: 1.1em;
+        opacity: 0.95;
+    }
+
+    section {
+        max-width: 1100px;
+        margin: auto;
+        padding: 25px;
+    }
+
+    .resources-section {
+        background: linear-gradient(135deg, #e9f6ef 0%, #d4ede0 100%);
+        padding: 50px 40px;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        margin-top: 40px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .resources-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(47, 163, 107, 0.1) 0%, transparent 70%);
+        border-radius: 50%;
+    }
+
+    .resources-section::after {
+        content: "";
+        position: absolute;
+        bottom: -30%;
+        left: -20%;
+        width: 250px;
+        height: 250px;
+        background: radial-gradient(circle, rgba(31, 122, 77, 0.08) 0%, transparent 70%);
+        border-radius: 50%;
+    }
+
+    .resources-section h2 {
+        text-align: center;
+        font-size: 2em;
+        margin-bottom: 15px;
+        color: #1f7a4d;
+        position: relative;
+        z-index: 1;
+    }
+
+    .resources-section > p {
+        text-align: center;
+        color: #4a6359;
+        margin-bottom: 40px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .resources-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .resource-category {
+        background: white;
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease;
+    }
+
+    .resource-category:hover {
+        transform: translateY(-5px);
+    }
+
+    .resource-category h3 {
+        font-size: 1.2em;
+        margin-top: 0;
+        margin-bottom: 20px;
+        color: #1f7a4d;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #e3f5ec;
+    }
+
+    .resource-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: white;
+        color: #1f7a4d;
+        text-decoration: none;
+        padding: 15px 18px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(31, 122, 77, 0.1);
+        border: 2px solid #e3f5ec;
+        font-size: 0.95em;
+        line-height: 1.4;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .resource-link::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 4px;
+        background: linear-gradient(135deg, #2fa36b 0%, #1f7a4d 100%);
+        transition: width 0.3s ease;
+    }
+
+    .resource-link:hover::before {
+        width: 100%;
+        opacity: 0.1;
+    }
+
+    .resource-link:hover {
+        transform: translateX(8px);
+        box-shadow: 0 6px 20px rgba(31, 122, 77, 0.25);
+        border-color: #2fa36b;
+        color: #145c3a;
+    }
+
+    .resource-link::after {
+        content: "→";
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #2fa36b;
+        transition: transform 0.3s ease;
+    }
+
+    .resource-link:hover::after {
+        transform: translateX(5px);
+    }
+
+    h2 {
+        border-left: 6px solid #2fa36b;
+        padding-left: 12px;
+        margin-top: 40px;
+        color: #1f7a4d;
+    }
+
+    h3 {
+        color: #1f7a4d;
+        margin-top: 25px;
+    }
+
+    .info {
+        background: #e9f6ef;
+        padding: 15px 20px;
+        border-radius: 10px;
+        border-left: 5px solid #2fa36b;
+        margin-bottom: 20px;
+    }
+
+    .highlight-box {
+        background: white;
+        padding: 20px;
+        border-radius: 14px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        margin-bottom: 25px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .card {
+        background: white;
+        padding: 20px;
+        border-radius: 14px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .card h3 {
+        margin-top: 0;
+        color: #1f7a4d;
+    }
+
+    .tag {
+        display: inline-block;
+        background: #e3f5ec;
+        color: #1f7a4d;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: bold;
+        margin-bottom: 8px;
+        margin-right: 5px;
+    }
+
+    ul {
+        padding-left: 18px;
+    }
+
+    .macronutrient-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .macro-card {
+        background: linear-gradient(135deg, #2fa36b 0%, #1f7a4d 100%);
+        color: white;
+        padding: 25px;
+        border-radius: 14px;
+        text-align: center;
+    }
+
+    .macro-card h3 {
+        color: white;
+        margin-top: 0;
+    }
+
+    .tip-box {
+        background: #fff4e6;
+        border-left: 5px solid #ff9800;
+        padding: 15px 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+    }
+
+    .tip-box strong {
+        color: #e65100;
+    }
+
+    footer {
+        background: #1f7a4d;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        margin-top: 50px;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Diet and Eating Habits for a Healthy & Fit Lifestyle</h1>
+    <p>Your comprehensive guide to nutrition, meal planning, and sustainable eating</p>
+    <a href="{{ url_for('dashboard') }}" class="home-btn">Home</a>
+</header>
+
+<section>
+    <div class="info">
+        <strong>Remember:</strong> A proper diet doesn't mean strict restrictions or starvation. It means eating the right foods in the right quantities based on your individual goals. Sustainable eating habits are always more effective than short-term crash diets.
+    </div>
+
+    <h2>Understanding Calories and Energy Balance</h2>
+    <div class="highlight-box">
+        <p>Calories are units of energy that your body uses to perform daily activities, maintain vital functions, and support physical exercise.</p>
+        
+        <div class="grid">
+            <div class="card">
+                <span class="tag">Calorie Deficit</span>
+                <p><strong>Goal: Fat Loss</strong></p>
+                <p>When calorie intake is less than calories burned, your body enters a deficit, leading to fat loss.</p>
+            </div>
+            <div class="card">
+                <span class="tag">Calorie Surplus</span>
+                <p><strong>Goal: Muscle Gain</strong></p>
+                <p>When calorie intake exceeds energy expenditure, your body enters a surplus, supporting weight and muscle gain.</p>
+            </div>
+            <div class="card">
+                <span class="tag">Maintenance</span>
+                <p><strong>Goal: Weight Maintenance</strong></p>
+                <p>Eating roughly the same number of calories that your body burns results in weight maintenance.</p>
+            </div>
+        </div>
+    </div>
+
+    <h2>Macronutrients and Their Importance</h2>
+    <p>Macronutrients consist of proteins, carbohydrates, and fats, each serving a unique purpose in the body. A healthy diet includes all three in balanced proportions rather than eliminating any one group.</p>
+    
+    <div class="macronutrient-grid">
+        <div class="macro-card">
+            <h3>Protein</h3>
+            <p>Essential for muscle repair, growth, immune function, and satiety. Higher intake needed for those who exercise regularly.</p>
+        </div>
+        <div class="macro-card">
+            <h3>Carbohydrates</h3>
+            <p>Primary energy source, especially important for physical performance and recovery.</p>
+        </div>
+        <div class="macro-card">
+            <h3>Fats</h3>
+            <p>Vital for hormone production, joint health, nutrient absorption, and brain function.</p>
+        </div>
+    </div>
+
+    <h2>Micronutrients, Fiber, and Hydration</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Micronutrients</h3>
+            <p>Vitamins and minerals support immunity, metabolism, bone health, and overall bodily functions.</p>
+        </div>
+        <div class="card">
+            <h3>Fiber</h3>
+            <p>Critical for digestion, gut health, blood sugar control, and fat loss by improving satiety. Found in fruits, vegetables, whole grains, nuts, and seeds.</p>
+        </div>
+        <div class="card">
+            <h3>Hydration</h3>
+            <p>Water regulates body temperature, aids digestion, and enhances physical and mental performance. Drink adequate water throughout the day.</p>
+        </div>
+    </div>
+
+    <h2>How to Create Your Own Diet Plan</h2>
+    <div class="highlight-box">
+        <ol>
+            <li><strong>Identify Your Goal:</strong> Fat loss, muscle gain, or maintenance</li>
+            <li><strong>Adjust Calories:</strong> Through portion control rather than drastic food elimination</li>
+            <li><strong>Prioritize Protein:</strong> Supports muscle retention, recovery, and hunger control</li>
+            <li><strong>Balance Carbs & Fats:</strong> Based on activity levels, preferences, and tolerance</li>
+            <li><strong>Meal Timing:</strong> Should be practical and consistent, focusing on long-term adherence</li>
+        </ol>
+        <p><em>A diet plan is successful only if it can be followed comfortably over time.</em></p>
+    </div>
+
+    <h2>Diet Approaches for Different Goals</h2>
+    
+    <div class="grid">
+        <div class="card">
+            <span class="tag">Fat Loss</span>
+            <h3>Cutting Diet</h3>
+            <p><strong>Focus:</strong> Calorie deficit while preserving muscle mass</p>
+            <ul>
+                <li>High protein intake to prevent muscle loss</li>
+                <li>Fiber-rich foods (vegetables, fruits) for volume</li>
+                <li>Portion control and regular meal timing</li>
+                <li>Avoid liquid calories</li>
+            </ul>
+            <p><strong>Vegetarian:</strong> Dal, paneer, tofu, curd, legumes</p>
+            <p><strong>Egg-based:</strong> Egg whites, whole eggs</p>
+            <p><strong>Non-vegetarian:</strong> Chicken breast, fish, eggs</p>
+        </div>
+
+        <div class="card">
+            <span class="tag">Muscle Gain</span>
+            <h3>Bulking Diet</h3>
+            <p><strong>Focus:</strong> Controlled calorie surplus with adequate protein</p>
+            <ul>
+                <li>Higher carbohydrate intake for workouts</li>
+                <li>Combined with strength training</li>
+                <li>Gradual muscle gain without excessive fat</li>
+                <li>Consistent eating habits</li>
+            </ul>
+            <p><strong>Vegetarian:</strong> Paneer, milk, curd, lentils, rice, nuts, seeds</p>
+            <p><strong>Egg-based:</strong> Whole eggs, milk, grains</p>
+            <p><strong>Non-vegetarian:</strong> Chicken, fish, eggs, dairy</p>
+        </div>
+
+        <div class="card">
+            <span class="tag">Maintenance</span>
+            <h3>Healthy Lifestyle</h3>
+            <p><strong>Focus:</strong> Balanced nutrition for energy and health</p>
+            <ul>
+                <li>Balanced meals with moderate portions</li>
+                <li>Variety in food choices</li>
+                <li>Regular meal timing</li>
+                <li>Minimal processed foods</li>
+            </ul>
+            <p><strong>Core foods:</strong> Whole grains, vegetables, fruits, legumes, dairy, healthy fats</p>
+        </div>
+    </div>
+
+    <h2>Pre-Workout and Post-Workout Nutrition</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Pre-Workout</h3>
+            <p>Provides energy for training through easily digestible carbohydrates combined with small amounts of protein.</p>
+            <p><strong>Examples:</strong> Fruit with milk, light rice with dal</p>
+        </div>
+        <div class="card">
+            <h3>Post-Workout</h3>
+            <p>Supports muscle recovery and glycogen replenishment with protein and carbohydrates within 1-2 hours after exercise.</p>
+            <p><strong>Examples:</strong> Rice with dal, eggs, curd, fruit with milk</p>
+        </div>
+    </div>
+
+    <h2>Healthy Eating Habits for Sustainability</h2>
+    <div class="info">
+        <p>Successful diets are built on habits rather than perfection:</p>
+        <ul>
+            <li>Eat slowly and listen to hunger cues</li>
+            <li>Maintain consistent meal timings</li>
+            <li>Stay hydrated throughout the day</li>
+            <li>Avoid extreme restrictions</li>
+            <li>Prevent emotional eating and binge-restrict cycles</li>
+            <li>Allow flexibility and enjoyment</li>
+        </ul>
+    </div>
+
+    <h2>Common Diet Mistakes to Avoid</h2>
+    <div class="tip-box">
+        <strong>Warning:</strong> Many people fail to see results due to these common mistakes:
+        <ul>
+            <li>Insufficient protein intake</li>
+            <li>Drastic calorie cuts</li>
+            <li>Inconsistent eating patterns</li>
+            <li>Poor sleep quality</li>
+            <li>Overdependence on supplements</li>
+        </ul>
+        <p><em>Remember: No supplement can replace a balanced diet, and no short-term diet can compensate for long-term inconsistency.</em></p>
+    </div>
+
+    <h2>Supplements: A Supporting Role</h2>
+    <div class="highlight-box">
+        <p>Supplements such as protein powder, creatine, and multivitamins can be useful but are <strong>not mandatory</strong>.</p>
+        <ul>
+            <li>Should only support a well-structured diet</li>
+            <li>Cannot replace whole foods</li>
+            <li>Food quality, quantity, and consistency remain the primary drivers of results</li>
+        </ul>
+    </div>
+
+</section>
+
+<section>
+    <div class="resources-section">
+        <h2>📚 Articles for referance</h2>
+        <p>Explore these carefully curated articles and guides to deepen your nutrition knowledge</p>
+        
+        <div class="resources-grid">
+            <div class="resource-category">
+                <h3>🥗 Diet Planning & Healthy Eating</h3>
+                <a href="https://www.imwow.co.in/vegetarian-diet-plan.php" target="_blank" class="resource-link">
+                    <span>Balanced Diet & Vegetarian Nutrition Plan</span>
+                </a>
+                <a href="https://alleviatepainclinic.com/blog/a-template-of-7-day-indian-vegetarian-diet-plan-for-weight-loss/" target="_blank" class="resource-link">
+                    <span>7-Day Indian Vegetarian Diet Plan</span>
+                </a>
+                <a href="https://www.parashospitals.com/blogs/indian-diet-plan-for-weight-loss" target="_blank" class="resource-link">
+                    <span>Indian Diet Plan for Weight Loss</span>
+                </a>
+                <a href="https://www.medanta.org/patient-education-blog/15-superfoods-for-weight-loss-the-ultimate-indian-diet-plan" target="_blank" class="resource-link">
+                    <span>15 Best Foods for Weight Loss</span>
+                </a>
+                <a href="https://www.ckbhospital.com/blogs/diet-chart-for-weight-gain" target="_blank" class="resource-link">
+                    <span>Diet Chart for Weight Gain</span>
+                </a>
+            </div>
+            
+            <div class="resource-category">
+                <h3>🍗 Muscle Gain & Fitness</h3>
+                <a href="https://www.healthkart.com/connect/indian-vegetarian-diet-plan-for-bodybuilding/bid-6343/" target="_blank" class="resource-link">
+                    <span>Indian Vegetarian Bodybuilding Diet</span>
+                </a>
+                <a href="https://www.healthkart.com/connect/budget-bodybuilding-indian-diet-plan-for-bodybuilding/bid-5163/" target="_blank" class="resource-link">
+                    <span>Indian Bodybuilding Diet (Non-Veg)</span>
+                </a>
+                <a href="https://kriya.fit/blogs/videos/nutrition-for-muscle-gain-the-ultimate-guide-to-protein-carbs-fats-for-indians" target="_blank" class="resource-link">
+                    <span>Nutrition for Muscle Gain Guide</span>
+                </a>
+            </div>
+            
+            <div class="resource-category">
+                <h3>📋 Balanced & Fitness Meal Plans</h3>
+                <a href="https://dietdekho.com/balanced-diet-chart-for-muscle-gain/" target="_blank" class="resource-link">
+                    <span>Balanced Diet Chart for Muscle Gain</span>
+                </a>
+                <a href="https://quanutrition.com/blog/indian-diet-plan-for-2400-calories/" target="_blank" class="resource-link">
+                    <span>Indian Diet Plan for 2400 Calories</span>
+                </a>
+                
+                <h3 style="margin-top: 20px;">📌 Trusted Medical Reference</h3>
+                <a href="https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/vegetarian-diet/art-20046446" target="_blank" class="resource-link">
+                    <span>Vegetarian Diet Guide (Mayo Clinic)</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>Your Journey to a Healthier Lifestyle</p>
+</footer>
+
+</body>
+</html>
