@@ -9,7 +9,11 @@ app = Flask(__name__)
 import os
 app.secret_key = os.environ.get("SECRET_KEY", "dev-key")
 
-DB_NAME = "nosh.db"
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_NAME = os.path.join(BASE_DIR, "nosh.db")
+
 
 
 # -------------------------
@@ -81,6 +85,8 @@ def submit():
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     if request.method == "POST":
+        init_db()   # <-- IMPORTANT
+
         email = request.form.get("email")
         password = request.form.get("password")
 
@@ -100,6 +106,9 @@ def signup():
             )
 
             conn.commit()
+            print("SIGNUP SUCCESS:", email)
+
+
         except sqlite3.IntegrityError:
             conn.close()
             return redirect(url_for("login"))
