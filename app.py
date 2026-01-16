@@ -20,7 +20,7 @@ DB_NAME = os.path.join(BASE_DIR, "nosh.db")
 # DATABASE HELPERS
 # -------------------------
 def get_db():
-    return sqlite3.connect(DB_NAME)
+    return sqlite3.connect(DB_NAME, check_same_thread=False)
 
 
 def init_db():
@@ -122,19 +122,12 @@ def signup():
 # -------------------------
 # DASHBOARD (PROTECTED)
 # -------------------------
-@app.route("/dashboard", methods=["GET", "POST"])
+@app.route("/dashboard")
 def dashboard():
     if "user_id" not in session:
         return redirect(url_for("login"))
 
-    conn = get_db()
-    cur = conn.cursor()
-
-
-    return render_template(
-        "dashboard.html"
-    )
-
+    return render_template("dashboard.html")
 
 # -------------------------
 # MODULE PAGES (PROTECTED)
