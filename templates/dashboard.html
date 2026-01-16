@@ -1,54 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOSH Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='dashboardstyle.css') }}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOSH Dashboard</title>
+
+<style>
+/* ================= GLOBAL ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Bell MT';
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+    background: linear-gradient(120deg, #e8f6ef, #dff3ea, #f4f4f4);
+    background-size: 300% 300%;
+    animation: gradientMove 18s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ================= BLURRED CIRCLES ================= */
+.bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(130px);
+    opacity: 0.35;
+    z-index: -1;
+}
+
+.circle-1 { width: 420px; height: 420px; background: #1f9e73; top: -140px; left: -140px; }
+.circle-2 { width: 520px; height: 520px; background: #70d4a2; bottom: -200px; right: -200px; }
+
+/* ================= HEADER ================= */
+header {
+    background: #1e7c4d;
+    text-align: center;
+    padding-bottom: 25px;
+    position: relative;
+    color: white;
+}
+
+.home-btn, .logout-btn {
+    position: absolute;
+    top: 20px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.home-btn { left: 30px; }
+.logout-btn { right: 30px; }
+
+/* ================= WELCOME ================= */
+.welcome {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 26px 32px;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(8px);
+    border-radius: 18px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+.welcome h2 { color: #1e7c4d; }
+
+/* ================= DASHBOARD GRID ================= */
+.dashboard {
+    max-width: 1100px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+/* ================= CARD WITH IMAGE ================= */
+.card {
+    height: 260px;
+    border-radius: 22px;
+    text-decoration: none;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 25px;
+    box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+    transition: 0.4s ease;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0.15));
+    z-index: 1;
+}
+
+.card h2 {
+    position: relative;
+    z-index: 2;
+    font-size: 1.8rem;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.03);
+}
+
+/* ================= ONLINE IMAGE LINKS ================= */
+.workout {
+    background: url("https://images.unsplash.com/photo-1554284126-aa88f22d8b74") center/cover;
+}
+
+.diet {
+    background: url("https://images.unsplash.com/photo-1490645935967-10de6ba17061") center/cover;
+}
+
+.mental {
+    background: url("https://images.unsplash.com/photo-1506126613408-eca07ce68773") center/cover;
+}
+
+.custom {
+    background: url("https://imgs.search.brave.com/vjhXDUv5bdUm9pEPZIPyI3U31lnTZgqoYo2GvJbEIDo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vZml0ZWxv/LmNvL3dwLWNvbnRl/bnQvdXBsb2Fkcy9D/dXN0b20tRGlldC1Q/bGFuLmpwZz9maXQ9/OTM0LDQ4MSZzc2w9/MQ") center/cover;
+}
+
+/* ================= MOTIVATION SECTION ================= */
+.motivation {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.motivation h2 {
+    color: #1e7c4d;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.quotes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.quote-card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    font-style: italic;
+    color: #444;
+}
+
+/* ================= FOOTER ================= */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #555;
+}
+</style>
 </head>
+
 <body>
-    <header>
-        <a href="{{ url_for('dashboard') }}" class="home-btn">🏠 Home</a>
-        <div class="header-content">
-                <img src="{{ url_for('static', filename='images/logo.png') }}"
-     width="700" height="300" alt="Nosh Logo">
-     <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
 
-    </header>
+<div class="bg-circle circle-1"></div>
+<div class="bg-circle circle-2"></div>
 
-    <main>
-        <section class="dashboard">
-            <!-- Box 1 -->
-            <a href="{{ url_for('workout') }}" class="card-button">
-                <div class="box-inner">
-                    <span class="icon">💪</span>
-                    <h2>Workout</h2>
-                </div>
-            </a>
+<header>
+    <a href="{{ url_for('dashboard') }}" class="home-btn">🏠 Home</a>
+    <img src="{{ url_for('static', filename='images/logo.png') }}" width="700" height="300" alt="Nosh Logo">
+    <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+</header>
 
-            <!-- Box 2 -->
-            <a href="{{ url_for('diet') }}" class="card-button">
-                <div class="box-inner">
-                    <span class="icon">🥗</span>
-                    <h2>Diet Planner</h2>
-                </div>
-            </a>
+<div class="welcome">
+    <h2>Welcome 👋</h2>
+    <p>Choose an area below to continue your wellness journey.</p>
+</div>
 
-            <!-- Box 3 (Spans both columns at the bottom) -->
-            <a href="{{ url_for('mentalhealth') }}" class="card-button">
-                <div class="box-inner">
-                    <span class="icon">🧘</span>
-                    <h2>Mental Health</h2>
-                </div>
-            </a>
-            
-            <a href="{{ url_for('custom_diet_plan') }}" class="card-button">
-                <div class="box-inner">
-                    <span class="icon">⚙</span>
-                    <h2>Custom Diet Plan</h2>
-                </div>
-            </a>
-        </section>
-    </main>
+<section class="dashboard">
+    <a href="{{ url_for('workout') }}" class="card workout">
+        <h2>💪 Workout Programs</h2>
+    </a>
+
+    <a href="{{ url_for('diet') }}" class="card diet">
+        <h2>🥗 Diet Planner</h2>
+    </a>
+
+    <a href="{{ url_for('mentalhealth') }}" class="card mental">
+        <h2>🧘 Mental Health</h2>
+    </a>
+
+    <a href="{{ url_for('custom_diet_plan') }}" class="card custom">
+        <h2>⚙️ Custom Diet Plan</h2>
+    </a>
+</section>
+
+<section class="motivation">
+    <h2>Stay Motivated 🌱</h2>
+    <div class="quotes">
+        <div class="quote-card">“Your body can stand almost anything. It’s your mind that you have to convince.”</div>
+        <div class="quote-card">“Take care of your body. It’s the only place you have to live.”</div>
+        <div class="quote-card">“Small daily improvements lead to stunning results.”</div>
+        <div class="quote-card">“Fitness is not about being better than someone else. It’s about being better than you used to be.”</div>
+        <div class="quote-card">“Discipline is choosing what you want most over what you want now.”</div>
+        <div class="quote-card">“A healthy outside starts from the inside.”</div>
+    </div>
+</section>
+
+<footer>
+    NOSH • Eat Smart • Train Well • Stay Mindful
+</footer>
+
 </body>
 </html>
